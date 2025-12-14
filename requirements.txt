@@ -5,28 +5,16 @@ Werkzeug==3.1.3
 Jinja2==3.1.2
 itsdangerous==2.2.0
 click==8.2.0
-
-# Database
 pg8000==1.31.2
-SQLAlchemy==2.0.21
-Flask-SQLAlchemy==3.1.1  # Added - REQUIRED for Flask-Migrate
+SQLAlchemy>=2.0.21,<2.1
+Flask-SQLAlchemy>=3.0.3
 Flask-Migrate==4.0.5
-
-# Security & Authentication
-Flask-Login==0.6.3       # Added
-Flask-Bcrypt==1.0.1      # Added
+Flask-Login==0.6.3      
+Flask-Bcrypt==1.0.1      
 python-dotenv==1.0.0
-
-# Forms
-Flask-WTF==1.2.1         # Added
-WTForms==3.1.2           # Added dependency for Flask-WTF
-
-# CORS
+Flask-WTF==1.2.1        
+WTForms==3.1.2          
 Flask-Cors==4.0.0
-
-# Sessions
-Flask-Session==0.6.0     # Added (optional but recommended)
-
-# Testing (optional)
-pytest==8.3.3            # Added
+Flask-Session==0.6.0   
+pytest==8.3.3           
 gunicorn==21.2.0
