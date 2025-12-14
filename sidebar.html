@@ -1,0 +1,108 @@
+  Sidebar and Content
+        <div class="d-flex">
+            <div class="sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="javascript:void(0)" onclick="showSection('dashboard')">
+                            <i class="bi bi-speedometer2"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="showSection('my-account')">
+                            <i class="bi bi-person"></i> <span>My Account</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="showSection('savings')">
+                            <i class="bi bi-wallet2"></i> <span>Savings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="showSection('loans')">
+                            <i class="bi bi-cash-coin"></i> <span>Loans</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="showSection('minutes')">
+                            <i class="bi bi-file-earmark-text"></i> <span>Minutes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="showSection('gallery')">
+                            <i class="bi bi-images"></i> <span>Gallery</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="showSection('members')">
+                            <i class="bi bi-people"></i> <span>Members</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <a class="nav-link text-danger" href="javascript:void(0)" id="sidebarLogout">
+                            <i class="bi bi-box-arrow-right"></i> <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+     * ================= MOBILE SIDEBAR ================= */
+@media (max-width: 576px) {
+    .sidebar {
+        position: fixed;
+        top: 56px;
+        left: -250px;
+        width: 250px;
+        height: calc(100vh - 56px);
+        background-color: #9fb5d6;
+        padding: 20px 0;
+        transition: left 0.3s ease;
+        z-index: 9999 !important;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .toggle-sidebar {
+        display: block !important;
+    }
+}
+
+.offcanvas-start {
+  width: 250px; /* Default width */
+}
+
+.offcanvas-body .nav-link {
+  padding: 12px 20px;
+}
+  .sidebar {
+            background-color: #f0f2f5;
+            height: calc(100vh - 56px);
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 250px;
+            padding: 20px 0;
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 9999 !important;
+        }
+
+        .sidebar .nav-link {
+            color: #495057;
+            border-radius: 0;
+            padding: 10px 20px;
+        }
+
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: rgba(13, 27, 61, 0.1);
+            color: #0d1b3d;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }

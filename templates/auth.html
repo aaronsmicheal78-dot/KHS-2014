@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHS 2014 Members Portal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style id="app-style">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #0d1b3d !important;
+        }
+
+       
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #dashboard {
+            display: block;
+        }
+
+      
+
+        .authentication-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+
+        .auth-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .auth-header h4 {
+            color: #0d1b3d;
+            font-weight: 700;
+        }
+
+        .auth-tabs {
+            border-bottom: none;
+        }
+
+        .auth-tabs .nav-link {
+            border: none;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .auth-tabs .nav-link.active {
+            color: #0d1b3d;
+            border-bottom: 3px solid #0d1b3d;
+            background-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80px;
+                text-align: center;
+            }
+            
+            .sidebar .nav-link span {
+                display: none;
+            }
+            
+            .sidebar .nav-link i {
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+            
+            .content {
+                margin-left: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                width: 0;
+                padding: 0;
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+            
+            .sidebar.show {
+                width: 200px;
+                padding: 20px 0;
+            }
+            
+            .sidebar.show .nav-link span {
+                display: inline;
+            }
+            
+            .sidebar.show .nav-link i {
+                margin-right: 10px;
+            }
+            
+            .toggle-sidebar {
+                display: block !important;
+            }
+        }
+
+        .toggle-sidebar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login/Register Page -->
+    <div id="authentication-page" class="authentication-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card auth-card">
+                        <div class="card-body p-4 p-md-5">
+                            <div class="auth-header">
+                                <h4>KHS 2014 Members Portal</h4>
+                            </div>
+                            
+                            <ul class="nav nav-tabs auth-tabs mb-4" id="authTabs" role="tablist">
+                                <li class="nav-item flex-fill" role="presentation">
+                                    <button class="nav-link active w-100" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+                                </li>
+                                <li class="nav-item flex-fill" role="presentation">
+                                    <button class="nav-link w-100" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">Register</button>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content" id="authTabsContent">
+                                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                    <form id="loginForm">
+                                        <div class="mb-3">
+                                            <label for="loginPhone" class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" id="loginPhone" placeholder="Enter your phone number" required>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="loginPassword" class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2 mt-4">
+                                            <button type="button" id="loginButton" class="btn btn-primary btn-lg">Login</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                    <form id="registerForm">
+                                        <div class="mb-3">
+                                            <label for="registerName" class="form-label">Full Name</label>
+                                            <input type="text" class="form-control" id="registerName" placeholder="Enter your full name" required>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="registerPhone" class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" id="registerPhone" placeholder="Enter your phone number" required>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="registerPassword" class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="registerPassword" placeholder="Create a password" required>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm your password" required>
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2 mt-4">
+                                            <button type="button" id="registerButton" class="btn btn-primary btn-lg">Register</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script id="app-script">
+      
+        // // Show authentication page
+        // function showAuthPage() {alert('backend not active');}
+        //     document.getElementById('authentication-page').style.display = 'flex';
+        
+        // // Show portal page
+        // function showPortalPage() { alert('Backend not activated');}
+        //      document.getElementById('authentication-page').style.display = 'none';
+        
+        //     showSection('profile');
+
+</script> 
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHS 2014 Members Portal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style id="app-style">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #0d1b3d !important;
+        }
+
+       
+
+        .content {
+           
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #dashboard {
+            display: block;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 600;
+        }
+
+        .summary-card {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .summary-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .summary-card p {
+            color: #6c757d;
+            margin: 0;
+        }
+
+        .table th {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .gallery-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .member-row {
+            cursor: pointer;
+        }
+
+        .member-details {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 14%;
+            object-fit: cover;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <!-- Portal Page -->
+    <div id="portal-page" style="display: block;">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <!-- <button class="btn btn-link text-light toggle-sidebar me-2" type="button">
+                    <i class="bi bi-list"></i>
+                </button> -->
+                <button
+  class="btn btn-link text-light d-lg-none"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#sidebarOffcanvas"
+  aria-controls="sidebarOffcanvas"
+>
+  <i class="bi bi-list fs-4"></i>
+</button>
+
+                <a class="navbar-brand" href="javascript:void(0)">KHS 2014 Portal</a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i> <span id="userNameDisplay">User</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="javascript:void(0)" onclick="showSection('my-account')">My Account</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)" id="logoutButton">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+ <!-- Desktop Sidebar -->
+
+
+<div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="sidebarOffcanvas">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body p-0">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" href="#" onclick="showSection('dashboard')">
+          <i class="bi bi-speedometer2"></i> Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="showSection('my-account')">
+          <i class="bi bi-person"></i> My Account
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="showSection('savings')">
+          <i class="bi bi-wallet2"></i> Savings
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="showSection('loans')">
+          <i class="bi bi-cash-coin"></i> Loans
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="showSection('minutes')">
+          <i class="bi bi-file-earmark-text"></i> Minutes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="showSection('gallery')">
+          <i class="bi bi-images"></i> Gallery
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="showSection('members')">
+          <i class="bi bi-people"></i> Members
+        </a>
+      </li>
+      <li class="nav-item mt-3">
+        <a class="nav-link text-danger" href="#" id="sidebarLogout">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+            <div class="content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="section">
+                    <h3 class="mb-4">Dashboard</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card summary-card">
+                                <div class="card-body">
+                                    <i class="bi bi-wallet2 text-primary" style="font-size: 2rem;"></i>
+                                    <p>Total Savings</p>
+                                    <h3 id="totalSavingsDisplay">Loading...</h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card summary-card">
+                                <div class="card-body">
+                                    <i class="bi bi-shield-plus text-success" style="font-size: 2rem;"></i>
+                                    <p>Emergency Fund</p>
+                                    <h3 id="emergencyFundDisplay">Loading...</h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card summary-card">
+                                <div class="card-body">
+                                    <i class="bi bi-check-circle text-info" style="font-size: 2rem;"></i>
+                                    <p>Subscription Status</p>
+                                    <h3 id="subscriptionStatusDisplay">Loading...</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Recent Transactions</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th class="text-end">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentTransactionsTable">
+                                        <tr>
+                                            <td colspan="4" class="text-center">Loading transactions...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- My Account Section -->
+                <section id="my-account" class="section">
+                    <h3 class="mb-4">My Account</h3>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Personal Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 text-center mb-3 mb-md-0">
+                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="profile-image mb-3" alt="Profile Picture">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label text-muted">Full Name</label>
+                                            <p class="form-control-plaintext" id="accountFullName">Loading...</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label text-muted">Phone Number</label>
+                                            <p class="form-control-plaintext" id="accountPhone">Loading...</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label text-muted">Member Since</label>
+                                            <p class="form-control-plaintext" id="accountMemberSince">Loading...</p>
+                                        </div>
+                                           <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label text-muted">Member Status</label>
+                                            <p class="form-control-plaintext" id="accountStatus">Loading...</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label text-muted">Member ID</label>
+                                            <p class="form-control-plaintext" id="accountMemberId">Loading...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Subscription Status</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div id="subscriptionStatusIndicator" class="me-3" style="width: 20px; height: 20px; border-radius: 50%; background-color: #ccc;"></div>
+                                        <h4 id="accountSubscriptionStatus">Loading...</h4>
+                                    </div>
+                                    <p class="text-muted mt-2" id="accountSubscriptionDetails">Loading subscription details...</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Total Savings</h5>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h2 id="accountTotalSavings">Loading...</h2>
+                                    <p class="text-muted">Last updated: <span id="accountLastUpdated">Loading...</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Savings Section -->
+                <section id="savings" class="section">
+                    <h3 class="mb-4">Savings</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Savings Summary</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="text-center p-3">
+                                                <p class="text-muted mb-1">Personal Savings</p>
+                                                <h3 id="personalSavingsDisplay">Loading...</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="text-center p-3">
+                                                <p class="text-muted mb-1">Emergency Fund</p>
+                                                <h3 id="savingsEmergencyFundDisplay">Loading...</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Make a Contribution</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="contributionAmount" class="form-label">Amount</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">UGX</span>
+                                                <input type="number" class="form-control" id="contributionAmount" placeholder="Enter amount">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="contributionType" class="form-label">Contribution Type</label>
+                                            <select class="form-select" id="contributionType">
+                                                <option value="savings">Personal Savings</option>
+                                                 <option value="savings">Emergency Fund</option>
+                                                <option value="emergency">Subscription</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" id="contributeButton">Contribute</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Contribution History</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Type</th>
+                                            <th>Method</th>
+                                            <th class="text-end">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="contributionsTable">
+                                        <tr>
+                                            <td colspan="4" class="text-center">Loading contribution history...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Loans Section -->
+                <section id="loans" class="section">
+                    <h3 class="mb-4">Loans</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Loan Eligibility</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center mb-4">
+                                        <h3>You're eligible for up to</h3>
+                                        <h2 id="loanEligibilityAmount" class="text-primary">Loading...</h2>
+                                        <p class="text-muted" id="loanEligibilityMessage">Based on your savings and account history</p>
+                                    </div>
+                                    
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="loanAmount" class="form-label">Loan Amount</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">UGX</span>
+                                                <input type="number" class="form-control" id="loanAmount" placeholder="Enter amount">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="loanTerm" class="form-label">Repayment Period (months)</label>
+                                            <select class="form-select" id="loanTerm">
+                                                <option value="3">3 months</option>
+                                                <option value="6">6 months</option>
+                                                <option value="12">12 months</option>
+                                                <option value="24">24 months</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="loanPurpose" class="form-label">Purpose</label>
+                                            <textarea class="form-control" id="loanPurpose" rows="3" placeholder="Briefly explain the purpose of the loan"></textarea>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" id="applyLoanButton">Apply for Loan</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Active Loans</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div id="activeLoansContainer">
+                                        <p class="text-center text-muted">Loading active loans...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Loan History</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Term</th>
+                                            <th>Status</th>
+                                            <th class="text-end">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="loanHistoryTable">
+                                        <tr>
+                                            <td colspan="5" class="text-center">Loading loan history...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Minutes Section -->
+                <section id="minutes" class="section">
+                    <h3 class="mb-4">Meeting Minutes</h3>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Available Documents</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Title</th>
+                                            <th>File Size</th>
+                                            <th class="text-end">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="minutesTable">
+                                        <tr>
+                                            <td colspan="4" class="text-center">Loading documents...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Gallery Section -->
+                <section id="gallery" class="section">
+                    <h3 class="mb-4">Photo Gallery</h3>
+                    
+                    <div class="row" id="galleryContainer">
+                        <div class="col-12 text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading gallery...</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Members Section -->
+                <section id="members" class="section">
+                    <h3 class="mb-4">Members Directory</h3>
+                    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="memberSearch" placeholder="Search members...">
+                                <button class="btn btn-outline-primary" type="button">
+                                    <i class="bi bi-search"></i> Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">All Members</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Member ID</th>
+                                            <th>Member Since</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="membersTable">
+                                        <tr>
+                                            <td colspan="4" class="text-center">Loading members...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal fade" id="memberDetailsModal" tabindex="-1" aria-labelledby="memberDetailsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="memberDetailsModalLabel">Member Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="memberDetailsContent">
+                                    <div class="text-center py-3">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <p class="mt-2">Loading member details...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
